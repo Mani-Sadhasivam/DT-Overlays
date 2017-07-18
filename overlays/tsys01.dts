@@ -1,0 +1,29 @@
+/*
+ * Author: Manivannan Sadhasivam
+ * Copyright (c) 2017 Linaro Inc.
+ * All rights reserved.
+ *
+ * Sample device tree overlay for TSYS01- Temperature sensor
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+     compatible = "qcom,apq8016-sbc", "qcom,apq8016", "qcom,sbc";
+    
+     fragment@0 {
+	 		target-path = "/soc/i2c@78b6000";
+        
+			__overlay__ {
+	    			status = "okay";
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+            		tsys01: tsys01@77 { //using default addr
+                			compatible = "meas,tsys01";
+                			reg = <0x77>;
+            		};
+			};
+	};
+};
